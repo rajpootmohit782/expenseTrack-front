@@ -6,6 +6,7 @@ function LoginScreen() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -18,12 +19,38 @@ function LoginScreen() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Perform login logic here with the email and password values
-    // For example, you can make an API request to your backend
+    // Check if any required fields are empty
+    if (!email || !password) {
+      setError("Please fill in all the required fields.");
+      return;
+    }
 
-    // Clear the form fields
-    setEmail("");
-    setPassword("");
+    fetch("https://r77cn3-5000.csb.app/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response from the backend
+        if (data.message === "User not found") {
+          setError("Email not found. Please try again.");
+        } else if (data.message === "Invalid password") {
+          setError("Invalid password. Please try again.");
+        } else if (data.message === "Login successful") {
+          setEmail("");
+          setPassword("");
+          setError("");
+
+          navigate("/dashboard");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setError("An error occurred during login.");
+      });
   };
 
   return (
@@ -42,6 +69,7 @@ function LoginScreen() {
 
         <button type="submit">Login</button>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <div>
         <p>
           Don't have an account? <Link to="/signup">Sign up</Link>

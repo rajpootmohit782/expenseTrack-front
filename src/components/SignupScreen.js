@@ -40,8 +40,6 @@ function SignupScreen() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response from the backend
-        // For example, you can show a success message and navigate to another page
         alert(data.message);
         navigate("/login");
       })
@@ -50,7 +48,7 @@ function SignupScreen() {
         alert("An error occurred during signup.");
       });
 
-    // Clear the form fields
+
     setName("");
     setEmail("");
     setPassword("");

@@ -25,7 +25,7 @@ function LoginScreen() {
       return;
     }
 
-    fetch("https://r77cn3-5000.csb.app/auth/login", {
+    fetch("https://hx28bh-5000.csb.app/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

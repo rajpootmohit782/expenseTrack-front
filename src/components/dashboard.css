@@ -1,0 +1,175 @@
+/* dashboard.css */
+
+.dashboard {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h1 {
+  font-size: 24px;
+  color: #203647;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-info p {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.dashboard-info .user-info p {
+  font-size: 16px;
+  color: #203647;
+  margin-bottom: 10px;
+}
+
+.dashboard-info .total-salary p {
+  font-size: 16px;
+  color: #203647;
+  margin-bottom: 10px;
+}
+
+.dashboard-info .total-salary button {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard-info .total-expenses p {
+  font-size: 16px;
+  color: #203647;
+  margin-bottom: 20px;
+}
+
+.dashboard .salary-form {
+  margin-bottom: 20px;
+}
+
+.dashboard .salary-form label {
+  font-size: 16px;
+  color: #203647;
+  margin-right: 10px;
+}
+
+.dashboard .salary-form input[type="number"] {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.dashboard .salary-form button[type="submit"] {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard .add-form-btn {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard .expense-form {
+  margin-bottom: 20px;
+}
+
+.dashboard .expense-form label {
+  font-size: 16px;
+  color: #203647;
+  margin-right: 10px;
+}
+
+.dashboard .expense-form input[type="text"],
+.dashboard .expense-form select {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.dashboard .expense-form button[type="submit"] {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 10px;
+  }
+
+  .dashboard h1 {
+    font-size: 20px;
+  }
+
+  .dashboard-info p {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .dashboard-info .user-info p,
+  .dashboard-info .total-salary p,
+  .dashboard-info .total-expenses p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .dashboard-info .total-salary button,
+  .dashboard .salary-form button[type="submit"],
+  .dashboard .add-form-btn,
+  .dashboard .expense-form button[type="submit"] {
+    font-size: 12px;
+    padding: 6px 12px;
+    margin-bottom: 5px;
+  }
+
+  .dashboard .salary-form label,
+  .dashboard .salary-form input[type="number"],
+  .dashboard .expense-form label,
+  .dashboard .expense-form input[type="text"],
+  .dashboard .expense-form select {
+    font-size: 14px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.expense-div {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.expense-data-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.expense-data-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.expense-data-item h3 {
+  flex: 1;
+  margin: 0;
+}

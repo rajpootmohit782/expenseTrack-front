@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function LoginScreen() {
+function LoginScreen({ toggleHasAccount }) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -43,8 +43,11 @@ function LoginScreen() {
           setEmail("");
           setPassword("");
           setError("");
-
-          navigate("/dashboard");
+          toggleHasAccount();
+          console.log(data.user);
+          const userId = data.user.id; // Assuming the response contains the user ID
+          const userData = data.user;
+          navigate(`/dashboard/${userId}`, { state: { userData } }); // Pass the user ID as state to the dashboard route
         }
       })
       .catch((error) => {

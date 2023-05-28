@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./dashboard.css";
 
 const Dashboard = () => {
+  const [expenses, setExpenses] = useState([]);
   const [expensedata, setExpenseData] = useState();
   const [xuserId, setUserId] = useState("");
   const [moneySpent, setMoneySpent] = useState("");
@@ -59,7 +60,6 @@ const Dashboard = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Expenses retrieved successfully:", data);
-        // Perform any further actions with the expenses
         setExpenseData(data);
         let total = 0;
         for (let i = 0; i < data.length; i++) {
@@ -68,6 +68,7 @@ const Dashboard = () => {
         }
         console.log(total);
         setTotalExpenses(total);
+        setExpenses(data); // Update the expenses state variable
       })
       .catch((error) => {
         console.error("Error getting expenses:", error);
@@ -186,10 +187,34 @@ const Dashboard = () => {
     setMoneySpent("");
     setExpenseDescription("");
     setExpenseCategory("");
+    window.location.reload();
   };
 
   const handleDisplayForm = () => {
     setFormNeed(!formNeed);
+  };
+
+  const handleDelete = (expenseId) => {
+    fetch(`https://hx28bh-5000.csb.app/expenses/delete/${expenseId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Expense deleted successfully:", data);
+        // Update the expenses state by removing the deleted expense
+        setExpenses((prevExpenses) =>
+          prevExpenses.filter((expense) => expense.id !== expenseId)
+        );
+        // Reload the page
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error deleting expense:", error);
+        // Handle the error appropriately
+      });
   };
 
   return (
@@ -265,12 +290,13 @@ const Dashboard = () => {
       )}
       <div className="expense-div">Expense DATA</div>
       <div className="expense-data-container">
-        {expensedata != undefined &&
-          expensedata.map((data) => (
+        {expenses != undefined &&
+          expenses.map((data) => (
             <div className="expense-data-item" key={data.id}>
-              <h3>Category :{data.expenseCategory}</h3>
-              <h3>Description: {data.expenseDescription}</h3>
-              <h3>Money Spend Rs. {data.moneySpent}</h3>
+              <h3>{data.expenseCategory}</h3>
+              <h3>{data.expenseDescription}</h3>
+              <h3>{data.moneySpent}</h3>
+              <button onClick={() => handleDelete(data.id)}>Delete</button>
             </div>
           ))}
       </div>

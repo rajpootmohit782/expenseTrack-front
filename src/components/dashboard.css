@@ -117,19 +117,22 @@
   }
 
   .dashboard h1 {
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: bolder;
   }
 
   .dashboard-info p {
-    font-size: 12px;
+    font-size: 20px;
     margin-bottom: 5px;
+    font-weight: 500;
   }
 
   .dashboard-info .user-info p,
   .dashboard-info .total-salary p,
   .dashboard-info .total-expenses p {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 5px;
+    font-weight: bold;
   }
 
   .dashboard-info .total-salary button,
@@ -155,6 +158,7 @@
 .expense-div {
   font-weight: bold;
   margin-bottom: 10px;
+  color: #ff0000; /* Changed color to red */
 }
 
 .expense-data-container {
@@ -172,4 +176,5 @@
 .expense-data-item h3 {
   flex: 1;
   margin: 0;
+  color: #336699; /* Changed color to a shade of blue */
 }

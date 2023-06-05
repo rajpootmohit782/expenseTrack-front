@@ -25,7 +25,7 @@ function LoginScreen({ toggleHasAccount }) {
       return;
     }
 
-    fetch("https://hx28bh-5000.csb.app/auth/login", {
+    fetch("https://hx28bh-4000.csb.app/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

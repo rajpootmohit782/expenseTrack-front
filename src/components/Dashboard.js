@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./dashboard.css";
+import Payment from "./Payment";
+import PremiumMembershipCheck from "./PremiumUser";
 
 const Dashboard = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const [expenses, setExpenses] = useState([]);
   const [expensedata, setExpenseData] = useState();
   const [xuserId, setUserId] = useState("");
@@ -25,7 +28,7 @@ const Dashboard = () => {
         // Update the user ID state
         setUserId(userId);
         const response = await fetch(
-          `https://hx28bh-5000.csb.app/user/${userId}`,
+          `https://hx28bh-4000.csb.app/user/${userId}`,
           {
             method: "GET",
             headers: {
@@ -51,7 +54,7 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`https://hx28bh-5000.csb.app/expenses/${userId}`, {
+    fetch(`https://hx28bh-4000.csb.app/expenses/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +80,7 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`https://hx28bh-5000.csb.app/salary/${userId}`, {
+    fetch(`https://hx28bh-4000.csb.app/salary/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -127,7 +130,7 @@ const Dashboard = () => {
       amount: totalSalary,
     };
 
-    fetch("https://hx28bh-5000.csb.app/salary/add", {
+    fetch("https://hx28bh-4000.csb.app/salary/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -165,7 +168,7 @@ const Dashboard = () => {
       expenseCategory,
     };
 
-    fetch("https://hx28bh-5000.csb.app/expenses/add", {
+    fetch("https://hx28bh-4000.csb.app/expenses/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -195,7 +198,7 @@ const Dashboard = () => {
   };
 
   const handleDelete = (expenseId) => {
-    fetch(`https://hx28bh-5000.csb.app/expenses/delete/${expenseId}`, {
+    fetch(`https://hx28bh-4000.csb.app/expenses/delete/${expenseId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -218,14 +221,19 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${darkMode ? "dark-mode" : ""}`}>
       <h1>Expense Tracker</h1>
+      <button onClick={() => setDarkMode(!darkMode)}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
+
+      <PremiumMembershipCheck userId={user} />
       <div className="dashboard-info">
         <p>Date: {new Date().toLocaleDateString()}</p>
         <p>Time: {new Date().toLocaleTimeString()}</p>
         <p>User: {user.name}</p>
         <p>
-          Total Salary: `Rs. {salary}`
+          Total Salary: Rs. {salary}
           <button onClick={() => setSalaryForm(!salaryForm)}>
             Edit Salary
           </button>
@@ -235,7 +243,7 @@ const Dashboard = () => {
             <div>
               <label htmlFor="totalSalary">Total Salary Update:</label>
               <input
-                type="Number"
+                type="number"
                 id="totalSalary"
                 value={totalSalary}
                 onChange={handleTotalSalaryChange}
@@ -288,9 +296,9 @@ const Dashboard = () => {
           <button type="submit">Submit</button>
         </form>
       )}
-      <div className="expense-div">Expense DATA</div>
+      <h2>Expense DATA</h2>
       <div className="expense-data-container">
-        {expenses != undefined &&
+        {expenses !== undefined &&
           expenses.map((data) => (
             <div className="expense-data-item" key={data.id}>
               <h3>{data.expenseCategory}</h3>
@@ -300,7 +308,8 @@ const Dashboard = () => {
             </div>
           ))}
       </div>
-      <h2>Money Left = {salary - totalExpenses}</h2>
+      <h2 className="money-left">Money Left = {salary - totalExpenses}</h2>
+      <Payment user={user} />
     </div>
   );
 };

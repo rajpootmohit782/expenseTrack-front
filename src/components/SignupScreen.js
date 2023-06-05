@@ -31,7 +31,7 @@ function SignupScreen() {
     }
 
     // Make an API request to your backend for signup
-    fetch("https://hx28bh-5000.csb.app/auth/signup", {
+    fetch("https://hx28bh-4000.csb.app/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

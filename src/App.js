@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import LoginScreen from "./components/LoginScreen";
+import AfterPaymentPage from "./components/PaymentSuceffull";
 import SignupScreen from "./components/SignupScreen";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
             element={<SignupScreen toggleHasAccount={toggleHasAccount} />}
           />
           <Route path="/dashboard/:userId" element={<Dashboard />} />
+          <Route path="/premiumSucessfull" element={<AfterPaymentPage />} />
         </Routes>
       </div>
     </Router>

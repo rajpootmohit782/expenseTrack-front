@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./dashboard.css";
 import Payment from "./Payment";
 import PremiumMembershipCheck from "./PremiumUser";
+import Leaderboard from "./Leaderboard";
 
 const Dashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -227,7 +228,6 @@ const Dashboard = () => {
         {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
 
-      <PremiumMembershipCheck userId={user} />
       <div className="dashboard-info">
         <p>Date: {new Date().toLocaleDateString()}</p>
         <p>Time: {new Date().toLocaleTimeString()}</p>
@@ -310,6 +310,7 @@ const Dashboard = () => {
       </div>
       <h2 className="money-left">Money Left = {salary - totalExpenses}</h2>
       <Payment user={user} />
+      <PremiumMembershipCheck userId={user} />
     </div>
   );
 };

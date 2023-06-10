@@ -9,6 +9,7 @@ import {
 import Dashboard from "./components/Dashboard";
 import LoginScreen from "./components/LoginScreen";
 import AfterPaymentPage from "./components/PaymentSuceffull";
+import ForgotPasswordButton from "./components/ResetPassword";
 import SignupScreen from "./components/SignupScreen";
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           />
           <Route path="/dashboard/:userId" element={<Dashboard />} />
           <Route path="/premiumSucessfull" element={<AfterPaymentPage />} />
+          <Route path="/forget" element={<ForgotPasswordButton />} />
         </Routes>
       </div>
     </Router>

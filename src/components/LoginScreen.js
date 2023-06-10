@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import ForgotPasswordButton from "./ResetPassword";
 function LoginScreen({ toggleHasAccount }) {
   const navigate = useNavigate();
 
@@ -55,6 +55,9 @@ function LoginScreen({ toggleHasAccount }) {
         setError("An error occurred during login.");
       });
   };
+  const handleForgotPassword = () => {
+    window.location.href = "/forget";
+  };
 
   return (
     <div>
@@ -73,10 +76,11 @@ function LoginScreen({ toggleHasAccount }) {
         <button type="submit">Login</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
+
       <div>
-        <p>
-          Don't have an account? <Link to="/signup">Sign up</Link>
-        </p>
+        <div>
+          <button onClick={handleForgotPassword}>Forgot Password</button>
+        </div>
       </div>
     </div>
   );

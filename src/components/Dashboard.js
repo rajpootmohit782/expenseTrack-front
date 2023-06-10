@@ -301,9 +301,9 @@ const Dashboard = () => {
         {expenses !== undefined &&
           expenses.map((data) => (
             <div className="expense-data-item" key={data.id}>
-              <h3>{data.expenseCategory}</h3>
-              <h3>{data.expenseDescription}</h3>
-              <h3>{data.moneySpent}</h3>
+              <h3 className="expense-data-item1">{data.expenseCategory}</h3>
+              <h3 className="expense-data-item2">{data.expenseDescription}</h3>
+              <h3 className="expense-data-item3">{data.moneySpent}</h3>
               <button onClick={() => handleDelete(data.id)}>Delete</button>
             </div>
           ))}

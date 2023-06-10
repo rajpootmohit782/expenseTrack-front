@@ -1,0 +1,27 @@
+.forgot-password-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}
+
+.forgot-password-button,
+.update-password-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.forgot-password-button:hover,
+.update-password-button:hover {
+  background-color: #2980b9;
+}

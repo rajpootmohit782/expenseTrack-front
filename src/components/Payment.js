@@ -52,7 +52,7 @@ const Payment = ({ user }) => {
   };
 
   return (
-    <div>
+    <div style={{ alignItem: "center" }}>
       <button
         style={{ color: "white", backgroundColor: "red" }}
         onClick={checkoutHandler}

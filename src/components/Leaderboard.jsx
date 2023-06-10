@@ -1,9 +1,28 @@
 import React, { useEffect, useState } from "react";
 
-const Leaderboard = ({ user }) => {
+const Leaderboard = () => {
   const [leaderboardData, setLeaderboardData] = useState([]);
-  const [Data, setData] = useState();
-  console.log(user);
+  const [usersData, setUsersData] = useState({}); // Store user data with userId as key
+
+  const fetchData = async (userId) => {
+    try {
+      const response = await fetch(
+        `https://hx28bh-4000.csb.app/user/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      console.log("User retrieved successfully:", data);
+      setUsersData((prevData) => ({ ...prevData, [userId]: data.user.name }));
+    } catch (error) {
+      console.error("Error getting user:", error);
+      // Handle the error appropriately
+    }
+  };
 
   useEffect(() => {
     fetch(`https://hx28bh-4000.csb.app/expenses/all`, {
@@ -16,17 +35,15 @@ const Leaderboard = ({ user }) => {
       .then((data) => {
         console.log("Expenses retrieved successfully:", data);
 
-        // Calculate total expenses for each ExpUserId
         const totalExpensesByExpUserId = data.reduce((acc, expense) => {
           const { ExpUserId, moneySpent } = expense;
-          setData(ExpUserId);
+          fetchData(ExpUserId);
           acc[ExpUserId] = (acc[ExpUserId] || 0) + moneySpent;
           return acc;
         }, {});
 
         console.log("Total Expenses by ExpUserId:", totalExpensesByExpUserId);
 
-        // Convert totalExpensesByExpUserId into an array of objects
         const generatedData = Object.entries(totalExpensesByExpUserId).map(
           ([ExpUserId, totalExpenses]) => ({
             ExpUserId,
@@ -34,18 +51,17 @@ const Leaderboard = ({ user }) => {
           })
         );
 
-        // Sort the generatedData based on total expenses (descending order)
         generatedData.sort((a, b) => b.totalExpenses - a.totalExpenses);
 
         console.log("Leaderboard Data:", generatedData);
 
-        setLeaderboardData(generatedData); // Update the leaderboard data state variable
+        setLeaderboardData(generatedData);
       })
       .catch((error) => {
         console.error("Error getting expenses:", error);
         // Handle the error appropriately
       });
-  }, []); // Empty dependency array to run the effect only onc
+  }, []);
 
   return (
     <div className="leaderboard">
@@ -55,6 +71,7 @@ const Leaderboard = ({ user }) => {
           <tr>
             <th style={styles.tableHeader}>User ID</th>
             <th style={styles.tableHeader}>Total Expenses</th>
+            <th style={styles.tableHeader}>User Name</th>
           </tr>
         </thead>
         <tbody>
@@ -62,6 +79,7 @@ const Leaderboard = ({ user }) => {
             <tr key={entry.ExpUserId}>
               <td style={styles.tableCell}>{entry.ExpUserId}</td>
               <td style={styles.tableCell}>{entry.totalExpenses}</td>
+              <td style={styles.tableCell}>{usersData[entry.ExpUserId]}</td>
             </tr>
           ))}
         </tbody>

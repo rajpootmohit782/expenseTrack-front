@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import FilterDashboard from "./FilterExpenses";
 import Leaderboard from "./Leaderboard";
 const PremiumMembershipCheck = ({ userId }) => {
   const [isPremiumMember, setIsPremiumMember] = useState(false);
@@ -42,7 +43,8 @@ const PremiumMembershipCheck = ({ userId }) => {
       {isPremiumMember ? (
         <div>
           <p style={{ color: "green" }}> {userId.name} is a premium member</p>
-          <Leaderboard user={userId} />
+          <Leaderboard userId={userId} />
+          <FilterDashboard userId={userId.id} />
         </div>
       ) : (
         <p> {userId.name} is not a premium member</p>

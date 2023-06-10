@@ -79,7 +79,15 @@ function LoginScreen({ toggleHasAccount }) {
 
       <div>
         <div>
-          <button onClick={handleForgotPassword}>Forgot Password</button>
+          <button
+            style={{
+              backgroundColor: "brown",
+              margin: "10px",
+            }}
+            onClick={handleForgotPassword}
+          >
+            Forgot Password
+          </button>
         </div>
       </div>
     </div>

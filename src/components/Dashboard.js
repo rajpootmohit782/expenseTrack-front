@@ -5,6 +5,7 @@ import Payment from "./Payment";
 import PremiumMembershipCheck from "./PremiumUser";
 import Leaderboard from "./Leaderboard";
 
+
 const Dashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [expenses, setExpenses] = useState([]);
@@ -311,6 +312,7 @@ const Dashboard = () => {
       <h2 className="money-left">Money Left = {salary - totalExpenses}</h2>
       <Payment user={user} />
       <PremiumMembershipCheck userId={user} />
+      
     </div>
   );
 };

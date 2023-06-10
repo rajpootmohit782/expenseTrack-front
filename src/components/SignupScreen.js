@@ -31,7 +31,7 @@ function SignupScreen() {
     }
 
     // Make an API request to your backend for signup
-    fetch("https://r77cn3-5000.csb.app/auth/signup", {
+    fetch("https://hx28bh-4000.csb.app/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,8 +40,6 @@ function SignupScreen() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response from the backend
-        // For example, you can show a success message and navigate to another page
         alert(data.message);
         navigate("/login");
       })
@@ -50,7 +48,7 @@ function SignupScreen() {
         alert("An error occurred during signup.");
       });
 
-    // Clear the form fields
+
     setName("");
     setEmail("");
     setPassword("");

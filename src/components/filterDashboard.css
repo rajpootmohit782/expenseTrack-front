@@ -1,0 +1,93 @@
+/* filterDashboard.css */
+
+.filter-dashboard-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f2f2f2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+select {
+  margin-bottom: 16px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.expense-category {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.expense-description {
+  margin-bottom: 8px;
+}
+
+.expense-money-spent {
+  font-weight: bold;
+}
+
+.expense-created-at {
+  font-size: 12px;
+  color: #888;
+}
+
+.total-expenses {
+  margin-bottom: 16px;
+}
+
+.total-expenses p {
+  margin: 8px 0;
+}
+
+.income-list {
+  margin-bottom: 20px;
+}
+
+.income-list li {
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.income-name {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.income-amount {
+  font-weight: bold;
+}
+
+.income-created-at {
+  font-size: 12px;
+  color: #888;
+}

@@ -6,7 +6,10 @@ import {
   Link,
   Navigate,
 } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
 import LoginScreen from "./components/LoginScreen";
+import AfterPaymentPage from "./components/PaymentSuceffull";
+import ForgotPasswordButton from "./components/ResetPassword";
 import SignupScreen from "./components/SignupScreen";
 
 function App() {
@@ -14,6 +17,7 @@ function App() {
 
   const toggleHasAccount = () => {
     setHasAccount(!hasAccount);
+    console.log("done and hasAccount is =>", hasAccount);
   };
 
   return (
@@ -45,6 +49,9 @@ function App() {
             path="/signup"
             element={<SignupScreen toggleHasAccount={toggleHasAccount} />}
           />
+          <Route path="/dashboard/:userId" element={<Dashboard />} />
+          <Route path="/premiumSucessfull" element={<AfterPaymentPage />} />
+          <Route path="/forget" element={<ForgotPasswordButton />} />
         </Routes>
       </div>
     </Router>

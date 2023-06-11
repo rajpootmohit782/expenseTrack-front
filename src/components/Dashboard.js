@@ -7,7 +7,7 @@ import Leaderboard from "./Leaderboard";
 
 const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1); // Current page number
-  const [expensesPerPage] = useState(2); // Number of expenses to display per page
+  const [expensesPerPage, setExpensesPerPage] = useState(2); // Number of expenses to display per page
 
   const [darkMode, setDarkMode] = useState(false);
   const [expenses, setExpenses] = useState([]);
@@ -237,6 +237,12 @@ const Dashboard = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleExpensesPerPageChange = (event) => {
+    const value = parseInt(event.target.value);
+    setExpensesPerPage(value);
+    setCurrentPage(1); // Reset to first page when changing expenses per page
+  };
+
   // Calculate total number of pages
   const totalPages = Math.ceil(expenses.length / expensesPerPage);
 
@@ -316,7 +322,23 @@ const Dashboard = () => {
         </form>
       )}
       <h2>Expense DATA</h2>
-      <h4>Only 2 Expenses per/page allowed to demonstrate next and prev</h4>
+      <h4>
+        Only {expensesPerPage} Expenses per/page allowed to demonstrate next and
+        prev
+      </h4>
+      {/* Display expenses per page select dropdown */}
+      <div>
+        <label htmlFor="expensesPerPage">Expenses Per Page:</label>
+        <select
+          id="expensesPerPage"
+          value={expensesPerPage}
+          onChange={handleExpensesPerPageChange}
+        >
+          <option value={2}>2</option>
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+        </select>
+      </div>
       <div className="expense-data-container">
         {expenses !== undefined &&
           currentExpenses.map((data) => (

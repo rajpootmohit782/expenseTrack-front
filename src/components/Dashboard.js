@@ -5,8 +5,10 @@ import Payment from "./Payment";
 import PremiumMembershipCheck from "./PremiumUser";
 import Leaderboard from "./Leaderboard";
 
-
 const Dashboard = () => {
+  const [currentPage, setCurrentPage] = useState(1); // Current page number
+  const [expensesPerPage] = useState(2); // Number of expenses to display per page
+
   const [darkMode, setDarkMode] = useState(false);
   const [expenses, setExpenses] = useState([]);
   const [expensedata, setExpenseData] = useState();
@@ -222,6 +224,22 @@ const Dashboard = () => {
       });
   };
 
+  // Get current expenses based on pagination
+  const indexOfLastExpense = currentPage * expensesPerPage;
+  const indexOfFirstExpense = indexOfLastExpense - expensesPerPage;
+  const currentExpenses = expenses.slice(
+    indexOfFirstExpense,
+    indexOfLastExpense
+  );
+
+  // Function to handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Calculate total number of pages
+  const totalPages = Math.ceil(expenses.length / expensesPerPage);
+
   return (
     <div className={`dashboard ${darkMode ? "dark-mode" : ""}`}>
       <h1>Expense Tracker</h1>
@@ -298,9 +316,10 @@ const Dashboard = () => {
         </form>
       )}
       <h2>Expense DATA</h2>
+      <h4>Only 2 Expenses per/page allowed to demonstrate next and prev</h4>
       <div className="expense-data-container">
         {expenses !== undefined &&
-          expenses.map((data) => (
+          currentExpenses.map((data) => (
             <div className="expense-data-item" key={data.id}>
               <h3 className="expense-data-item1">{data.expenseCategory}</h3>
               <h3 className="expense-data-item2">{data.expenseDescription}</h3>
@@ -309,10 +328,40 @@ const Dashboard = () => {
             </div>
           ))}
       </div>
+      {/* Display pagination UI */}
+      <div className="pagination">
+        {/* Previous page button */}
+        <button
+          disabled={currentPage === 1}
+          onClick={() => handlePageChange(currentPage - 1)}
+        >
+          Previous
+        </button>
+
+        {/* Page numbers */}
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+          (pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              disabled={currentPage === pageNumber}
+            >
+              {pageNumber}
+            </button>
+          )
+        )}
+
+        {/* Next page button */}
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => handlePageChange(currentPage + 1)}
+        >
+          Next
+        </button>
+      </div>
       <h2 className="money-left">Money Left = {salary - totalExpenses}</h2>
       <Payment user={user} />
       <PremiumMembershipCheck userId={user} />
-      
     </div>
   );
 };

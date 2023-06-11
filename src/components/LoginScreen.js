@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ForgotPasswordButton from "./ResetPassword";
+
 function LoginScreen({ toggleHasAccount }) {
   const navigate = useNavigate();
 
